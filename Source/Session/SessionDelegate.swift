@@ -7,6 +7,7 @@ public protocol SessionDelegate: AnyObject {
     func session(_ session: Session, openExternalURL url: URL)
     func session(_ session: Session, didReceiveAuthenticationChallenge challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void)
 
+
     func sessionDidLoadWebView(_ session: Session)
     func sessionDidStartRequest(_ session: Session)
     func sessionDidFinishRequest(_ session: Session)
@@ -14,6 +15,8 @@ public protocol SessionDelegate: AnyObject {
     func sessionDidFinishFormSubmission(_ session: Session)
 
     func sessionWebViewProcessDidTerminate(_ session: Session)
+
+    func session(_ session: Session, didReceiveResponse response: HTTPURLResponse, forVisitable visitable: Visitable)
 }
 
 public extension SessionDelegate {
@@ -33,4 +36,6 @@ public extension SessionDelegate {
     func session(_ session: Session, didReceiveAuthenticationChallenge challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         completionHandler(.performDefaultHandling, nil)
     }
+
+    func session(_ session: Session, didReceiveResponse response: HTTPURLResponse, forVisitable visitable: Visitable) {}
 }
