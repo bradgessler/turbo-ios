@@ -14,6 +14,8 @@ public protocol SessionDelegate: AnyObject {
     func sessionDidFinishFormSubmission(_ session: Session)
 
     func sessionWebViewProcessDidTerminate(_ session: Session)
+
+    func session(_ session: Session, didReceiveResponse response: HTTPURLResponse, forVisitable visitable: Visitable)
 }
 
 public extension SessionDelegate {
@@ -33,4 +35,6 @@ public extension SessionDelegate {
     func session(_ session: Session, didReceiveAuthenticationChallenge challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         completionHandler(.performDefaultHandling, nil)
     }
+
+    func session(_ session: Session, didReceiveResponse response: HTTPURLResponse, forVisitable visitable: Visitable) {}
 }
